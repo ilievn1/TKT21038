@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  
+  express-app:
+    image: ilievn1/example-express
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: express-app
+  
+  watchtower:
+    image: containrrr/watchtower
+    environment:
+      -  WATCHTOWER_POLL_INTERVAL=30
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: watchtower
