@@ -1,0 +1,15 @@
+FROM node:alpine
+
+EXPOSE 3000 
+
+WORKDIR /usr/src/app
+
+COPY package.json .
+
+RUN npm install && \
+    npm install -g create-react-app && \
+    npm prune --production # remove development dependencies
+
+COPY . .
+
+CMD ["npm", "start"]
